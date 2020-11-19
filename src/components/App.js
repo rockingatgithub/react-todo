@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import {Container} from 'react-bootstrap'
+import Tasklist from './TaskList'
+class App extends Component {
+  render() {
+    return (
+      <Container>
+        <Tasklist dispatch={this.props.dispatch} />
+      </Container>
+    );
+  }
 }
 
-export default App;
+function callback(state) {
+  return {
+    tasks: state.tasks,
+  };
+}
+
+const connectedComponent = connect(callback)(App);
+
+export default connectedComponent;
