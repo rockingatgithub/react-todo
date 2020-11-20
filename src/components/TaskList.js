@@ -5,6 +5,7 @@ import Task from './Task'
 import AddTask from './AddTask'
 import {allTaskList} from '../actions'
 
+
 class TaskList extends Component {
   constructor(props) {
     super(props);
@@ -34,9 +35,9 @@ class TaskList extends Component {
         return (
            <Row>
              <Col>
-             {!this.state.showForm ? <Button onClick={this.openForm} variant="light">
+             {!this.state.showForm ? <Button onClick={this.openForm} variant="outline-secondary" id="addtaskbutton">
           ADD TASK
-        </Button> : <Button onClick={this.closeForm} variant="light">
+        </Button> : <Button onClick={this.closeForm} variant="outline-secondary" id="addtaskbutton">
           CLOSE FORM
         </Button> }
         {this.state.showForm && (
@@ -45,6 +46,7 @@ class TaskList extends Component {
              </Col>
              <Col>
              <ListGroup>
+               <h3 className="list-heading">Tasks List</h3>
              {list.map((task) => (
             <Task key={task.id} task={task} dispatch={this.props.dispatch} />
           ))}

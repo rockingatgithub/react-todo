@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap';
 import {addTask, updateTask} from '../actions'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class AddTask extends Component {
     constructor(props) {
@@ -32,7 +34,16 @@ class AddTask extends Component {
       handleAddTask = () => {
         const { title, completed } = this.state;
         if(title===""){
-          console.log("give title to task");
+          toast("Please enter a title for task.", {
+            position: "top-right",
+            type: "info",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
           return;
         }
         const task = {
@@ -45,6 +56,19 @@ class AddTask extends Component {
 
       handleUpdateTask = () => {
         const { title, completed } = this.state;
+        if(title===""){
+          toast("Please enter a title for task.", {
+            position: "top-right",
+            type: "info",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          return;
+        }
         const task = {
           userId: 1,
           title: title,
@@ -83,9 +107,9 @@ class AddTask extends Component {
       </Col>
     </Form.Group>
   
-  {!this.props.isUpdate ? <Button variant="secondary" onClick={this.handleAddTask}>
+  {!this.props.isUpdate ? <Button variant="outline-secondary" onClick={this.handleAddTask} size="sm" >
           Add to List
-        </Button> : <Button variant="secondary" onClick={this.handleUpdateTask}>
+        </Button> : <Button variant="outline-secondary" onClick={this.handleUpdateTask} size="sm">
           Update
         </Button>}
 </Form>
