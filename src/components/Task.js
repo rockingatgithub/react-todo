@@ -4,6 +4,9 @@ import { Button, ListGroupItem } from 'react-bootstrap';
 import {deleteTask} from '../actions'
 import AddTask from './AddTask'
 
+
+// ================================view for a single task=============================================
+
 class Task extends Component {
         constructor(props) {
             super(props);

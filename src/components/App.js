@@ -4,6 +4,11 @@ import {Container, Navbar, Row, Col} from 'react-bootstrap'
 import Tasklist from './TaskList'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
+//======================================main component of the app==================================
+
+
 class App extends Component {
 
   componentDidMount = () => {

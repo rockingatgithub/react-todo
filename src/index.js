@@ -10,6 +10,8 @@ import { ToastContainer } from "react-toastify";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import rootReducer from './reducers';
 
+//====================================creating a store===============================================
+
 const logger = ({ dispatch, getState }) => (next) => (action) => {
   console.log('ACTION', action);
   next(action);
