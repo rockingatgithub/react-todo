@@ -33,7 +33,7 @@ class TaskList extends Component {
           ADD TASK{" "}
         </Button>
         {this.state.showForm && (
-          <AddTask tasks={tasks} dispatch={this.props.dispatch} />
+          <AddTask tasks={tasks} dispatch={this.props.dispatch} isUpdate={false} taskId={-1} />
         )}
              </Col>
              <Col>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap';
-import {addTask} from '../actions'
+import {addTask, updateTask} from '../actions'
 
 class AddTask extends Component {
     constructor(props) {
@@ -33,12 +33,22 @@ class AddTask extends Component {
         const { title, completed } = this.state;
         const task = {
           userId: 1,
-          id: "NewTask",
           title: title,
           completed: completed,
         };
         this.props.dispatch(addTask(task));
       };
+
+      handleUpdateTask = () => {
+        const { title, completed } = this.state;
+        const task = {
+          userId: 1,
+          title: title,
+          completed: completed,
+        };
+        this.props.dispatch(updateTask(task, this.props.taskId));
+      };
+
     render() {
         return (
             <Form>
@@ -69,9 +79,11 @@ class AddTask extends Component {
       </Col>
     </Form.Group>
   
-  <Button variant="secondary" onClick={this.handleAddTask}>
+  {this.props.isUpdate ? <Button variant="secondary" onClick={this.handleAddTask}>
           Add to List
-        </Button>
+        </Button> : <Button variant="secondary" onClick={this.handleUpdateTask}>
+          Update
+        </Button>}
 </Form>
         );
     }

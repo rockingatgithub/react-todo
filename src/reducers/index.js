@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux'
-import{ALL_TASK, ADD_TASK, DELETE_TASK} from '../actions'
+import{ALL_TASK, ADD_TASK, DELETE_TASK, UPDATE_TASK} from '../actions'
 
 const initialTaskState = {
     list: [],
+    nextId: 12,
   };
 
   export function tasks(state = initialTaskState, action) {
@@ -22,9 +23,24 @@ const initialTaskState = {
           list: filteredArray,
         };
       case ADD_TASK: {
+        let newObj = Object.assign({}, action.task)
+        newObj.id=state.nextId
+        state.nextId++;
+        console.log(state.nextId)
         return {
           ...state,
-          list: [action.task, ...state.list],
+          list: [newObj, ...state.list],
+        };
+      }
+      case UPDATE_TASK: {
+        const filteredArray = state.list.filter(
+          (task) => task.id !== action.id
+        );
+        let newObj = Object.assign({}, action.task)
+        newObj.id=action.id
+        return {
+          ...state,
+          list: [newObj, ...filteredArray],
         };
       }
       default:
