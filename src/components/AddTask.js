@@ -31,6 +31,10 @@ class AddTask extends Component {
     
       handleAddTask = () => {
         const { title, completed } = this.state;
+        if(title===""){
+          console.log("give title to task");
+          return;
+        }
         const task = {
           userId: 1,
           title: title,
@@ -79,7 +83,7 @@ class AddTask extends Component {
       </Col>
     </Form.Group>
   
-  {this.props.isUpdate ? <Button variant="secondary" onClick={this.handleAddTask}>
+  {!this.props.isUpdate ? <Button variant="secondary" onClick={this.handleAddTask}>
           Add to List
         </Button> : <Button variant="secondary" onClick={this.handleUpdateTask}>
           Update

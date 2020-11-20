@@ -22,16 +22,23 @@ class TaskList extends Component {
       showForm: true,
     });
   };
+
+  closeForm = () => {
+    this.setState({
+      showForm: false,
+    });
+  };
     render() {
       const { tasks } = this.props;
       const { list } = tasks;
         return (
            <Row>
              <Col>
-             <Button onClick={this.openForm} variant="secondary">
-          {" "}
-          ADD TASK{" "}
-        </Button>
+             {!this.state.showForm ? <Button onClick={this.openForm} variant="light">
+          ADD TASK
+        </Button> : <Button onClick={this.closeForm} variant="light">
+          CLOSE FORM
+        </Button> }
         {this.state.showForm && (
           <AddTask tasks={tasks} dispatch={this.props.dispatch} isUpdate={false} taskId={-1} />
         )}
